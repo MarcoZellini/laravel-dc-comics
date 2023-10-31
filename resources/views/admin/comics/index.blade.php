@@ -19,7 +19,7 @@
                         <tr class="text-center">
                             <td>{{ $comic->id }}</td>
                             <td>{{ $comic->title }}</td>
-                            <td><img height="50px" src="{{ $comic->thumb }}" alt=""></td>
+                            <td><img height="50px" src="{{ asset('storage/' . $comic->thumb) }}" alt=""></td>
                             <td>
                                 <a class="btn btn-primary" href="{{ route('comics.show', $comic->id) }}">More</a>
                                 <a class="btn btn-warning" href="#">Edit</a>

@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="container d-flex py-3">
-        <img class="me-5" src="{{ $comic->thumb }}" alt="">
+        <img class="me-5" src="{{ asset('storage/' . $comic->thumb) }}" alt="">
         <div class="row row-cols-2 w-100 info">
             <div class="col-6 artists">
                 <h5>Artists: </h5>
