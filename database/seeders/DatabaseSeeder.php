@@ -18,5 +18,13 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+
+        /* Calling Additional Seeders
+            Docs: https://laravel.com/docs/10.x/seeding#calling-additional-seeders*/
+
+        $this->call([
+            ComicSeeder::class
+        ]);
     }
 }
