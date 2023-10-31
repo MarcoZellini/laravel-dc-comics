@@ -9,13 +9,13 @@
                     <div class="col">
                         <div class="card h-100">
                             <div class="card-header">
-                                <div><strong>Title: </strong>{{ $comic['title'] }}</div>
+                                <div><strong>Title: </strong>{{ $comic->title }}</div>
                             </div>
-                            <img class="h-100 object-fit-cover" src="{{ $comic['thumb'] }}" alt="">
+                            <img class="h-100 object-fit-cover" src="{{ $comic->thumb }}" alt="">
                             <div class="card-footer">
-                                <div><strong>Price: </strong>{{ $comic['price'] }}</div>
-                                <div><strong>Series: </strong>{{ $comic['series'] }}</div>
-                                <div><strong>Sale Date:</strong> {{ $comic['sale_date'] }}</div>
+                                <div><strong>Price: </strong>{{ $comic->price }}</div>
+                                <div><strong>Series: </strong>{{ $comic->series }}</div>
+                                <div><strong>Sale Date:</strong> {{ $comic->sale_date }}</div>
                             </div>
                         </div>
                     </div>
