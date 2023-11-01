@@ -10,7 +10,11 @@
         </div>
     </div>
     <div class="container d-flex py-3">
-        <img class="me-5" src="{{ asset('storage/' . $comic->thumb) }}" alt="">
+        @if (str_contains($comic->thumb, 'http'))
+            <img class="h-100 object-fit-cover" src="{{ $comic->thumb }}">
+        @else
+            <img class="h-100 object-fit-cover" src="{{ asset('storage/' . $comic->thumb) }}">
+        @endif
         <div class="row row-cols-2 w-100 info">
             <div class="col-6 artists">
                 <h5>Artists: </h5>

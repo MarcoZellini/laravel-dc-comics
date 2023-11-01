@@ -42,7 +42,7 @@ class ComicController extends Controller
         $new_comic->price = $request->price;
         $new_comic->save();
 
-        return view('admin.comics.create');
+        return to_route('admin.comics.create');
     }
 
     /**
