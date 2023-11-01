@@ -5,7 +5,7 @@
         <h1 class="text-center">Comic List</h1>
 
         <div class="table-responsive-sm">
-            <table class="table table-light">
+            <table class="table table-light align-middle">
                 <thead>
                     <tr class="text-center">
                         <th scope="col">ID</th>
