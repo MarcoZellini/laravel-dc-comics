@@ -1,1 +1,19 @@
 @import '~bootstrap/scss/bootstrap';
+
+.show_content {
+    img {
+        max-height: 600px;
+        margin-right: 1rem;
+    }
+}
+
+#comics {
+    a {
+        img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            object-position: top;
+        }
+    }
+}

@@ -18,5 +18,6 @@ use App\Http\Controllers\Admin\ComicController;
 Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/comics', [PageController::class, 'comics'])->name('comics');
 Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/show/{comic}', [PageController::class, 'show'])->name('show');
 
 Route::resource('admin/comics', ComicController::class);

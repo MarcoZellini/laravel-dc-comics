@@ -22,4 +22,9 @@ class PageController extends Controller
     {
         return view('about');
     }
+
+    public function show(Comic $comic)
+    {
+        return view('show', ['comic' => $comic]);
+    }
 }

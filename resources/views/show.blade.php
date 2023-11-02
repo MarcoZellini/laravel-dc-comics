@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
     <div class="show_content">
@@ -8,8 +8,7 @@
                 <h1 class="display-5 fw-bold">{{ $comic->title }}</h1>
                 <p class="col-md-8 fs-4">{{ $comic->description }}</p>
                 {{-- <button class="btn btn-primary btn-lg" type="button">Example button</button> --}}
-                <a href="{{ route('comics.index') }}" class="btn btn-primary btn-lg" type="button">Back to Collection!</a>
-                <a class="btn btn-warning btn-lg" href="{{ route('comics.edit', $comic->id) }}">Edit</a>
+                <a href="{{ route('comics') }}" class="btn btn-primary btn-lg" type="button">Back to Collection!</a>
             </div>
         </div>
         <div class="container d-flex py-3">

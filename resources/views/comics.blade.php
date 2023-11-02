@@ -4,7 +4,7 @@
     <section id="comics">
         <div class="container py-3">
             <h1 class="text-center">Comics Collection</h1>
-            <div class="row row-cols-1 row-cols-md-3 g-3">
+            <div class="row row-cols-1 row-cols-md-3 g-5">
                 @forelse ($comics as $comic)
                     <div class="col">
                         <div class="card h-100">
@@ -13,9 +13,13 @@
                             </div>
 
                             @if (str_contains($comic->thumb, 'http'))
-                                <img class="h-100 object-fit-cover" src="{{ $comic->thumb }}">
+                                <a href="{{ route('show', $comic) }}" class="h-100">
+                                    <img class="img-fluid" src="{{ $comic->thumb }}">
+                                </a>
                             @else
-                                <img class="h-100 object-fit-cover" src="{{ asset('storage/' . $comic->thumb) }}">
+                                <a href="{{ route('show', $comic) }}" class="h-100">
+                                    <img class="img-fluid" src="{{ asset('storage/' . $comic->thumb) }}">
+                                </a>
                             @endif
 
                             <div class="card-footer">

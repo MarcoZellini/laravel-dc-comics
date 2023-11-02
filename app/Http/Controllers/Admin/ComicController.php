@@ -50,6 +50,9 @@ class ComicController extends Controller
      */
     public function show(Comic $comic)
     {
+
+        //dd(gettype($comic->artists));
+
         return view('admin.comics.show', ['comic' => $comic]);
     }
 
