@@ -40,9 +40,34 @@ class ComicController extends Controller
 
         $new_comic->title = $request->title;
         $new_comic->price = $request->price;
+
+        if ($request->description) {
+            $new_comic->description = $request->description;
+        }
+
+        if ($request->series) {
+            $new_comic->series = $request->series;
+        }
+
+        if ($request->sale_date) {
+            $new_comic->sale_date = date('Y-m-d', strtotime($request->sale_date));
+        }
+
+        if ($request->type) {
+            $new_comic->type = $request->type;
+        }
+
+        if ($request->artists) {
+            $new_comic->artists = explode(',', $request->artists);
+        }
+
+        if ($request->writers) {
+            $new_comic->writers = explode(',', $request->writers);
+        }
+
         $new_comic->save();
 
-        return to_route('admin.comics.create');
+        return to_route('comics.create');
     }
 
     /**
