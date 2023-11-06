@@ -97,21 +97,22 @@ class ComicController extends Controller
         return to_route('comics.index')->with('message', 'Delete operation done successfully!');
     }
 
-    public function restore(Comic $comic)
+    public function restore($id)
     {
-        dd($comic = Comic::find($comic)->get());
+        $comic = Comic::withTrashed()->find((int)$id);
 
         $comic->restore();
 
         return to_route('trash')->with('message', 'Comic Restored Successfully!');
     }
 
-    // public function forceDestroy(Comic $comic)
-    // {
-    //     dd($comic);
+    public function forceDestroy($id)
+    {
+        //dd($comic);
+        $comic = Comic::withTrashed()->find($id);
 
-    //     $comic->forceDelete();
+        $comic->forceDelete();
 
-    //     return to_route('trash')->with('message', 'Comic Deleted Successfully!');
-    // }
+        return to_route('trash')->with('message', 'Comic Deleted Successfully!');
+    }
 }
