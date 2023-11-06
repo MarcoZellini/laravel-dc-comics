@@ -22,7 +22,6 @@
                     <div class="col-6 artists">
                         <h5>Artists: </h5>
                         <ul>
-                            {{-- @forelse (json_decode($comic->artists) as $artist) --}}
                             @forelse ($comic->artists as $artist)
                                 <li>{{ $artist }}</li>
                             @empty
@@ -34,7 +33,6 @@
                     <div class="col-6 writers">
                         <h5>Writers: </h5>
                         <ul>
-                            {{-- @forelse (json_decode($comic->writers) as $writer) --}}
                             @forelse ($comic->writers as $writer)
                                 <li>{{ $writer }}</li>
                             @empty

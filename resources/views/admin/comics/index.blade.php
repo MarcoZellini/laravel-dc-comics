@@ -29,7 +29,6 @@
                             <td>{{ $comic->id }}</td>
                             <td>{{ $comic->title }}</td>
                             <td>
-                                {{-- <img height="50px" src="{{ asset('storage/' . $comic->thumb) }}" alt=""> --}}
 
                                 @if (str_contains($comic->thumb, 'http'))
                                     <img height="50px" src="{{ $comic->thumb }}">
