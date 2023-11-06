@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('page-title', 'Edit')
+
+
 @section('content')
     <div class="container py-3">
         <h1 class="text-center">Edit Comic Number: # {{ $comic->id }}</h1>

@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('page-title', 'Create')
+
+
 @section('content')
     @if ($errors->any())
         <div class="alert alert-danger">

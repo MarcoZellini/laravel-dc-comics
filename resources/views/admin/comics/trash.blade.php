@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
-@section('page-title', 'Comics')
-
+@section('page-title', 'Trash')
 
 @section('content')
     <div class="container py-3">
@@ -40,8 +39,42 @@
 
                             </td>
                             <td>
-                                <a class="btn btn-primary" href="{{ route('comics.show', $comic->id) }}">More</a>
-                                <a class="btn btn-warning" href="{{ route('comics.edit', $comic->id) }}">Edit</a>
+
+                                <!-- Modal trigger button -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#modalId-restore-{{ $comic->id }}">
+                                    Restore
+                                </button>
+
+                                <!-- Modal Body -->
+                                <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                                <div class="modal fade" id="modalId-restore-{{ $comic->id }}" tabindex="-1"
+                                    data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                    aria-labelledby="modalTitleId-restore-{{ $comic->id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                                        role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalTitleId-restore-{{ $comic->id }}">
+                                                    Restore</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure to restore this comic?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <form action="{{ route('restoreTrash', $comic) }}" method="post">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-primary">Restore</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- Modal trigger button -->
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#modalId-{{ $comic->id }}">
@@ -69,7 +102,7 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Close</button>
-                                                <form action="{{ route('comics.destroy', $comic) }}" method="POST">
+                                                <form action="{{ route('deleteTrash', $comic) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger">Confirm</button>
@@ -86,7 +119,5 @@
                 </tbody>
             </table>
         </div>
-
-
     </div>
 @endsection

@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('page-title', 'Show Comic')
+
+
 @section('content')
     <div class="show_content">
         <div class="p-5 bg-dark text-light rounded-0">

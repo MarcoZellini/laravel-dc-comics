@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Comic;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreComicRequest;
 use App\Http\Requests\UpdateComicRequest;
@@ -34,9 +33,6 @@ class ComicController extends Controller
     {
 
         $val_data = $request->validated();
-        //dd(gettype($val_data), $val_data);
-        //dd($request);
-        $new_comic = new Comic();
 
         if ($request->has('thumb')) {
             $file_path = Storage::put('comics_images', $request->thumb);
@@ -44,35 +40,6 @@ class ComicController extends Controller
         }
 
         Comic::create($val_data);
-
-        /* $new_comic->title = $request->title;
-        $new_comic->price = $request->price;
-
-        if ($request->description) {
-            $new_comic->description = $request->description;
-        }
-
-        if ($request->series) {
-            $new_comic->series = $request->series;
-        }
-
-        if ($request->sale_date) {
-            $new_comic->sale_date = date('Y-m-d', strtotime($request->sale_date));
-        }
-
-        if ($request->type) {
-            $new_comic->type = $request->type;
-        }
-
-        if ($request->artists) {
-            $new_comic->artists = explode(',', $request->artists);
-        }
-
-        if ($request->writers) {
-            $new_comic->writers = explode(',', $request->writers);
-        }
-
-        $new_comic->save(); */
 
         return to_route('comics.index')->with('message', 'Store operation done successfully!');
     }
@@ -82,8 +49,6 @@ class ComicController extends Controller
      */
     public function show(Comic $comic)
     {
-
-        //dd(gettype($comic->artists));
 
         return view('admin.comics.show', ['comic' => $comic]);
     }
@@ -101,7 +66,6 @@ class ComicController extends Controller
      */
     public function update(UpdateComicRequest $request, Comic $comic)
     {
-        //dd(gettype($request));
 
         $val_data = $request->validated();
 
@@ -118,6 +82,11 @@ class ComicController extends Controller
         return to_route('comics.index', $comic)->with('message', 'Update operation done successfully!');
     }
 
+    public function trashed()
+    {
+        return view('admin.comics.trash', ['comics' => Comic::onlyTrashed()->get()]);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
@@ -126,5 +95,23 @@ class ComicController extends Controller
         $comic->delete();
 
         return to_route('comics.index')->with('message', 'Delete operation done successfully!');
+    }
+
+    public function restore(Comic $comic)
+    {
+        dd($comic);
+
+        $comic->restore();
+
+        return to_route('trash')->with('message', 'Comic Restored Successfully!');
+    }
+
+    public function forceDestroy(Comic $comic)
+    {
+        dd($comic);
+
+        $comic->forceDelete();
+
+        return to_route('trash')->with('message', 'Comic Deleted Successfully!');
     }
 }
