@@ -108,7 +108,6 @@ class ComicController extends Controller
 
     public function forceDestroy($id)
     {
-        //dd($comic);
         $comic = Comic::withTrashed()->find($id);
 
         $comic->forceDelete();
