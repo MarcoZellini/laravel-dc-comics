@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 use Illuminate\Support\Facades\Storage;
 
 class ComicController extends Controller
@@ -28,17 +30,22 @@ class ComicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
+
+        $val_data = $request->validated();
+        //dd(gettype($val_data), $val_data);
         //dd($request);
         $new_comic = new Comic();
 
         if ($request->has('thumb')) {
             $file_path = Storage::put('comics_images', $request->thumb);
-            $new_comic->thumb = $file_path;
+            $val_data['thumb'] = $file_path;
         }
 
-        $new_comic->title = $request->title;
+        Comic::create($val_data);
+
+        /* $new_comic->title = $request->title;
         $new_comic->price = $request->price;
 
         if ($request->description) {
@@ -65,7 +72,7 @@ class ComicController extends Controller
             $new_comic->writers = explode(',', $request->writers);
         }
 
-        $new_comic->save();
+        $new_comic->save(); */
 
         return to_route('comics.index')->with('message', 'Store operation done successfully!');
     }
@@ -92,19 +99,22 @@ class ComicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comic $comic)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
         //dd(gettype($request));
 
-        $data = $request->all();
+        $val_data = $request->validated();
 
-        if ($request->has('thumb') && $comic->thumb) {
-            Storage::delete($comic->thumb);
+        if ($request->has('thumb')) {
             $file_path = Storage::put('comics_images', $request->thumb);
-            $data['thumb'] = $file_path;
+            $val_data['thumb'] = $file_path;
+
+            if ($comic->thumb) {
+                Storage::delete($comic->thumb);
+            }
         }
 
-        $comic->update($data);
+        $comic->update($val_data);
         return to_route('comics.index', $comic)->with('message', 'Update operation done successfully!');
     }
 

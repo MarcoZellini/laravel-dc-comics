@@ -1,14 +1,27 @@
 @extends('layouts.admin')
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="container py-3">
         <h1 class="text-center">Add a Comic</h1>
         <form action="{{ route('comics.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Title *</label>
-                <input type="text" class="form-control" name="title" id="title" aria-describedby="helpTitle"
-                    placeholder="Insert a comic title">
+                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title"
+                    aria-describedby="helpTitle" placeholder="Insert a comic title">
+
+                @error('title')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
@@ -39,16 +52,6 @@
                 <label for="type" class="form-label">Type</label>
                 <input type="text" class="form-control" name="type" id="type" aria-describedby="helptype"
                     placeholder="Insert a comic type">
-            </div>
-            <div class="mb-3">
-                <label for="artists" class="form-label">Artists (Separare i valori tra le virgole)</label>
-                <input type="text" class="form-control" name="artists" id="artists" aria-describedby="helpartists"
-                    placeholder="Insert a comic artists">
-            </div>
-            <div class="mb-3">
-                <label for="writers" class="form-label">Writers (Separare i valori tra le virgole)</label>
-                <input type="text" class="form-control" name="writers" id="writers" aria-describedby="helpwriters"
-                    placeholder="Insert a comic writers">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

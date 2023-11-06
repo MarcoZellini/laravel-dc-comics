@@ -43,16 +43,6 @@
                 <input type="text" class="form-control" name="type" id="type" aria-describedby="helptype"
                     placeholder="Insert a comic type" value="{{ $comic->type }}">
             </div>
-            <div class="mb-3">
-                <label for="artists" class="form-label">Artists (Separare i valori tra le virgole)</label>
-                <input type="text" class="form-control" name="artists" id="artists" aria-describedby="helpartists"
-                    placeholder="Insert a comic artists" value="{{ implode(', ', $comic->artists) }}">
-            </div>
-            <div class="mb-3">
-                <label for="writers" class="form-label">Writers (Separare i valori tra le virgole)</label>
-                <input type="text" class="form-control" name="writers" id="writers" aria-describedby="helpwriters"
-                    placeholder="Insert a comic writers" value="{{ implode(', ', $comic->writers) }}">
-            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
