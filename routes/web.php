@@ -22,5 +22,5 @@ Route::get('/show/{comic}', [PageController::class, 'show'])->name('show');
 
 Route::get('/admin/comics/trash', [ComicController::class, 'trashed'])->name('trash');
 Route::post('/admin/comics/trash/{comic}', [ComicController::class, 'restore'])->name('restoreTrash');
-Route::delete('/admin/comics/trash/{comic}', [ComicController::class, 'forceDestroy'])->name('deleteTrash');
+// Route::delete('/admin/comics/trash/{comic}', [ComicController::class, 'forceDestroy'])->name('deleteTrash');
 Route::resource('admin/comics', ComicController::class);

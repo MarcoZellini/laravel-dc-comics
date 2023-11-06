@@ -66,7 +66,8 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Close</button>
-                                                <form action="{{ route('restoreTrash', $comic) }}" method="post">
+                                                <form action="{{ route('restoreTrash', ['comic' => $comic->id]) }}"
+                                                    method="post">
                                                     @csrf
                                                     <button type="submit" class="btn btn-primary">Restore</button>
                                                 </form>
@@ -102,11 +103,11 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Close</button>
-                                                <form action="{{ route('deleteTrash', $comic) }}" method="POST">
+                                                {{-- <form action="{{ route('deleteTrash', $comic) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger">Confirm</button>
-                                                </form>
+                                                </form> --}}
                                             </div>
                                         </div>
                                     </div>
