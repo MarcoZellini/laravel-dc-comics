@@ -22,7 +22,7 @@ class UpdateComicRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'bail|required|string|min:5|max:50',
+            'title' => 'bail|required|string|min:3|max:50',
             'price' => 'bail|required|string|min:1|max:10',
             'description' => 'bail|nullable|string',
             'series' => 'bail|nullable|string',
